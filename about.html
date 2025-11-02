@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Kyanamukaaka Older People's Association</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --green-dark: #225c2a;
+      --green: #2e7d32;
+      --gold: #b8860b;
+      --gold-light: #f0c36d;
+      --bg: linear-gradient(135deg, rgba(46,125,50,0.08), rgba(184,134,11,0.03));
+      --card-shadow: 0 8px 20px rgba(34,92,42,0.12);
+      --radius: 14px;
+      --nav-height: 70px;
+      font-family: "Segoe UI", Roboto, system-ui, -apple-system, sans-serif;
+      color: #133016;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .site {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    header {
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      background: linear-gradient(90deg, rgba(46,125,50,0.95), rgba(184,134,11,0.95));
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand img {
+      width: 65px;
+      height: 45px;
+      border-radius: 8px;
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    }
+
+    .brand div {
+      line-height: 1.2;
+    }
+
+    /* Navigation */
+    nav.nav {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    nav.nav a {
+      color: rgba(255,255,255,0.95);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 10px;
+      transition: all .22s ease;
+      font-weight: 600;
+    }
+
+    nav.nav a:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,0.08);
+    }
+
+    nav.nav a.active {
+      background: rgba(255,255,255,0.18);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+    }
+
+    /* Hamburger Menu Button */
+    .menu-toggle {
+      display: none;
+      font-size: 26px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: #fff;
+    }
+
+    /* Main Section */
+    main {
+      width: 95%;
+      max-width: 1100px;
+      margin: 20px auto;
+      display: grid;
+      gap: 18px;
+    }
+
+    .section {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .section h1 {
+      color: var(--green-dark);
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--gold-light);
+      padding-bottom: 6px;
+    }
+
+    .content-section {
+      margin-bottom: 30px;
+    }
+
+    .content-section h2 {
+      color: var(--green-dark);
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--gold-light);
+    }
+
+    .content-section p {
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .content-section ul {
+      padding-left: 20px;
+      margin-bottom: 15px;
+    }
+
+    .content-section li {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .content-section img {
+      width: 100%;
+      border-radius: 12px;
+      margin-top: 15px;
+      box-shadow: var(--card-shadow);
+      object-fit: cover;
+      max-height: 350px;
+    }
+     .btn:hover { transform: translateY(-3px); background: var(--green-dark); }
+
+    .prev-btn {
+      display: inline-block;
+      margin-top: 20px;
+      background: linear-gradient(180deg, var(--gold-light), var(--gold));
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .prev-btn:hover {
+      background: var(--green);
+      transform: translateY(-3px);}
+    footer {
+      margin-top: auto;
+      padding: 18px;
+      text-align: center;
+      color: #27402b;
+      font-size: 14px;
+      opacity: 0.95;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      nav.nav {
+        position: absolute;
+        top: var(--nav-height);
+        right: 0;
+        background: rgba(46,125,50,0.98);
+        flex-direction: column;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        text-align: center;
+        transition: max-height 0.3s ease;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+      }
+
+      nav.nav.open {
+        max-height: 300px;
+        padding: 12px 0;
+      }
+
+      nav.nav a {
+        display: block;
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="site">
+    <header>
+      <div class="brand">
+        <img src="KOPA -logo.jpg" alt="KOPA Logo">
+        <div>
+          <div style="font-size:16px">Kyanamukaaka</div>
+          <div style="font-size:12px; opacity:0.95;">Older People's Association</div>
+        </div>
+      </div>
+
+      <!-- Hamburger Menu -->
+      <button class="menu-toggle" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="about.html" class="active">About Us</a>
+        <a href="projects.html">Projects</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section">
+        <h1>About KOPA</h1>
+
+        <div class="content-section">
+          <h2>Our Story</h2>
+          <p>Kyanamukaaka Older People's Association (KOPA) is a community-based organization in Masaka District founded in May 2025. It is dedicated to improving the lives of senior citizens aged 55 and above through support, advocacy, and community programs.</p>
+          <p>We collaborate with families, local leaders, government bodies, and partners to ensure that older persons are included in social and economic development. Our programs positively impact over 500 elderly men and women in Kyanamukaaka Town Council and nearby areas.</p>
+          <img src="images (13).jpeg" alt="KOPA members and community">
+        </div>
+
+        <div class="content-section">
+          <h2>Our Vision</h2>
+          <p>To be a vibrant, inclusive, and empowered community of older persons aged 55 and above, actively contributing to national development and enjoying a high quality of life.</p>
+        </div>
+
+        <div class="content-section">
+          <h2>Our Mission</h2>
+          <p>To improve the quality of life of older persons by providing support, promoting their rights, dignity, education, and income-generating opportunities through advocacy and partnerships.</p>
+        </div>
+
+        <div class="content-section">
+          <h2>Core Values</h2>
+          <ul>
+            <li>Respect</li>
+            <li>Integrity</li>
+            <li>Inclusiveness</li>
+            <li>Transparency</li>
+            <li>Empowerment</li>
+            <li>Accountability</li>
+          </ul>
+        </div>
+
+        <div class="content-section">
+          <h2>Overall Goal</h2>
+          <p>To empower older persons through healthcare, social protection, skills development, and advocacy for their rights and dignity.</p>
+        </div>
+
+        <div class="content-section">
+          <h2>Governance Structure</h2>
+          <p>KOPA is governed by a General Assembly of all members and managed by a Board of Directors that includes the Chairperson, Vice-Chairperson, General Secretary, Assistant Secretary (ICT Specialist), Treasurer, and various committee members. An Advisory Council of respected elders provides professional guidance and oversight.</p>
+        </div>
+           <!-- Previous Button -->
+        <a href="index.html" class="prev-btn"><i class="fas fa-arrow-left"></i> Previous</a>
+    
+      </section>
+    </main>
+
+    <footer>
+      &copy; <span id="year"></span> Kyanamukaaka Older People's Association | All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Hamburger menu toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.nav');
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('open');
+      menuToggle.querySelector('i').classList.toggle('fa-times');
+    });
+  </script>
+</body>
+</html>

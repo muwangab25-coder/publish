@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects - Kyanamukaaka Older People's Association</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <style>
+    :root {
+      --green-dark: #225c2a;
+      --green: #2e7d32;
+      --gold: #b8860b;
+      --gold-light: #f0c36d;
+      --subtitle: #166534; /* distinct subtitle color */
+      --bg: linear-gradient(135deg, rgba(46, 125, 50, 0.08), rgba(184, 134, 11, 0.03));
+      --card-shadow: 0 8px 20px rgba(34, 92, 42, 0.12);
+      --radius: 14px;
+      --nav-height: 70px;
+      font-family: "Segoe UI", Roboto, system-ui, -apple-system, sans-serif;
+      color: #133016;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+
+    .site {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    header {
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      background: linear-gradient(90deg, rgba(46, 125, 50, 0.95), rgba(184, 134, 11, 0.95));
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+    }
+
+.brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand img {
+      width: 75px;
+      height: 50px;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    }
+
+    .brand div {
+      line-height: 1.2;
+    }
+    nav.nav {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    nav.nav a {
+      color: rgba(255, 255, 255, 0.95);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 10px;
+      transition: all 0.22s ease;
+      font-weight: 600;
+    }
+
+    nav.nav a:hover {
+      transform: translateY(-3px);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    nav.nav a.active {
+      background: rgba(255, 255, 255, 0.18);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Hamburger */
+    .menu-toggle {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    main {
+      width: 95%;
+      max-width: 1100px;
+      margin: 20px auto;
+      display: grid;
+      gap: 18px;
+    }
+
+    .section {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .section h1 {
+      color: var(--green-dark);
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--gold-light);
+      padding-bottom: 6px;
+    }
+
+    /* Program Cards */
+    .program-card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      margin-bottom: 25px;
+      border-left: 4px solid var(--gold);
+    }
+
+    .program-card h3 {
+      color: var(--subtitle);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .program-card h3 i {
+      color: var(--gold);
+    }
+
+    .program-card p {
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .program-card img {
+      width: 100%;
+      height: auto;
+      max-height: 280px;
+      border-radius: 6px;
+      margin-top: 5px;
+      object-fit: cover;
+      box-shadow: var(--card-shadow);
+    }
+    .btn:hover { transform: translateY(-3px); background: var(--green-dark); }
+
+    .prev-btn {
+      display: inline-block;
+      margin-top: 20px;
+      background: linear-gradient(180deg, var(--gold-light), var(--gold));
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .prev-btn:hover {
+      background: var(--green);
+      transform: translateY(-3px);}
+    footer {
+      margin-top: auto;
+      padding: 18px;
+      text-align: center;
+      color: #27402b;
+      font-size: 14px;
+      opacity: 0.95;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      header {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 14px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      nav.nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: rgba(46, 125, 50, 0.95);
+        border-radius: 10px;
+        margin-top: 10px;
+      }
+
+      nav.nav.show {
+        display: flex;
+      }
+
+      nav.nav a {
+        text-align: center;
+        padding: 10px;
+        width: 100%;
+      }
+
+      .brand img {
+        width: 55px;
+        height: 45px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="site">
+    <header>
+      <div class="brand">
+        <img src="KOPA -logo.jpg" alt="KOPA Logo" />
+        <div>
+          <div style="font-size:16px">Kyanamukaaka</div>
+          <div style="font-size:12px; opacity:0.95;">Older People's Association</div>
+        </div>
+      </div>
+
+      <i class="fas fa-bars menu-toggle" id="menu-btn"></i>
+
+      <nav class="nav" id="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="projects.html" class="active">Projects</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section">
+        <h1>Our Programs & Services</h1>
+
+        <div class="program-card">
+          <h3><i class="fas fa-heartbeat"></i> Health & Wellness Programs</h3>
+          <p>Regular health check-ups, wellness education, access to medical services, and awareness campaigns tailored for older persons to promote healthy aging.</p>
+          <img src="images (18).jpeg" alt="Health and wellness program" />
+        </div>
+
+        <div class="program-card">
+          <h3><i class="fas fa-hand-holding-usd"></i> Income-Generating Projects</h3>
+          <p>We support members with small business initiatives, craft-making, agriculture, and other income-generating activities that enhance self-reliance and sustainability.</p>
+          <img src="KOPA-Econ.jpg" alt="Income-generating activities" />
+        </div>
+
+        <div class="program-card">
+          <h3><i class="fas fa-gavel"></i> Advocacy & Rights Awareness</h3>
+          <p>We advocate for older persons’ rights, raise awareness on elder abuse, and empower members to participate in policy discussions that affect their wellbeing.</p>
+          <img src="latest10pix.jpg" alt="Advocacy and rights awareness program" />
+        </div>
+
+        <div class="program-card">
+          <h3><i class="fas fa-hands-helping"></i> Social Support & Counseling</h3>
+          <p>Providing emotional support, counseling, and community care programs that reduce loneliness and strengthen social bonds among the elderly.</p>
+          <img src="KOPA-Com.jpg" alt="Social support and counseling" />
+        </div>
+
+        <div class="program-card">
+          <h3><i class="fas fa-people-arrows"></i> Intergenerational Mentorship</h3>
+          <p>We connect the elderly with young people through mentorship, knowledge sharing, and cultural exchange programs to foster mutual respect and learning.</p>
+          <img src="Mentorship.jpeg" alt="Mentorship and intergenerational programs" />
+        </div>
+         <!-- Previous Button -->
+        <a href="about.html" class="prev-btn"><i class="fas fa-arrow-left"></i> Previous</a>
+    
+      </section>
+    </main>
+
+    <footer>
+      &copy; <span id="year"></span> Kyanamukaaka Older People's Association | All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    // Dynamic year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Toggle menu on small screens
+    const menuBtn = document.getElementById("menu-btn");
+    const navMenu = document.getElementById("nav-menu");
+
+    menuBtn.addEventListener("click", () => {
+      navMenu.classList.toggle("show");
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery - Kyanamukaaka Older People's Association</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --green-dark: #225c2a;
+      --green: #2e7d32;
+      --gold: #b8860b;
+      --gold-light: #f0c36d;
+      --accent: #166534; /* Subtitle color */
+      --bg: linear-gradient(135deg, rgba(46,125,50,0.08), rgba(184,134,11,0.03));
+      --card-shadow: 0 8px 20px rgba(34,92,42,0.12);
+      --radius: 14px;
+      --nav-height: 70px;
+      font-family: "Segoe UI", Roboto, system-ui, -apple-system, sans-serif;
+      color: #133016;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .site {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    header {
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 24px;
+      background: linear-gradient(90deg, rgba(46,125,50,0.95), rgba(184,134,11,0.95));
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand img {
+      width: 75px;
+      height: 50px;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    }
+
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    nav.nav {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    nav.nav a {
+      color: rgba(255,255,255,0.95);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 10px;
+      transition: all .22s ease;
+      font-weight: 600;
+    }
+
+    nav.nav a:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,0.08);
+    }
+
+    nav.nav a.active {
+      background: rgba(255,255,255,0.18);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+    }
+
+    main {
+      width: 95%;
+      max-width: 1100px;
+      margin: 24px auto;
+      display: grid;
+      gap: 18px;
+    }
+
+    .section {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: var(--card-shadow);
+    }
+
+    h1 {
+      color: var(--green-dark);
+      margin-bottom: 8px;
+      border-bottom: 2px solid var(--gold-light);
+      padding-bottom: 5px;
+    }
+
+    h2, h3 {
+      color: var(--accent);
+      margin-top: 15px;
+      margin-bottom: 10px;
+    }
+
+    /* Gallery Grid */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      height: 210px;
+      background: #f8f8f8;
+      box-shadow: var(--card-shadow);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    /* Caption overlay */
+    .caption {
+      position: absolute;
+      bottom: -100%;
+      left: 0;
+      width: 100%;
+      background: rgba(34,92,42,0.85);
+      color: white;
+      padding: 10px;
+      text-align: center;
+      font-size: 14px;
+      transition: bottom 0.4s ease;
+    }
+
+    .gallery-item:hover .caption {
+      bottom: 0;
+    }
+
+    /* Get Involved Button */
+    .btn-involved {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 10px 20px;
+      background: var(--gold);
+      color: white;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.2s;
+    }
+
+    .btn-involved:hover {
+      background: var(--green);
+      transform: translateY(-2px);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+
+    .lightbox.active { display: flex; }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+      box-shadow: 0 0 25px rgba(255,255,255,0.2);
+    }
+     .btn {
+      display: inline-block;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(180deg, var(--green), #2fa046);
+      color: #fff;
+      transition: all 0.3s ease;
+    }
+    .btn:hover { transform: translateY(-3px); background: var(--green-dark); }
+
+    .prev-btn {
+      display: inline-block;
+      margin-top: 20px;
+      background: linear-gradient(180deg, var(--gold-light), var(--gold));
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .prev-btn:hover {
+      background: var(--green);
+      transform: translateY(-3px);}
+    footer {
+      margin-top: auto;
+      padding: 18px;
+      text-align: center;
+      color: #27402b;
+      font-size: 14px;
+      opacity: 0.95;
+    }
+
+    /* Responsive Navigation */
+    @media (max-width: 900px) {
+      .hamburger { display: flex; }
+
+      nav.nav {
+        position: fixed;
+        top: var(--nav-height);
+        right: -100%;
+        height: calc(100vh - var(--nav-height));
+        width: 250px;
+        background: linear-gradient(180deg, rgba(46,125,50,0.98), rgba(184,134,11,0.98));
+        flex-direction: column;
+        padding: 20px;
+        transition: right 0.3s ease;
+        z-index: 999;
+      }
+
+      nav.nav.active { right: 0; }
+
+      nav.nav a {
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+        margin: 5px 0;
+      }
+
+      .brand img {
+        width: 55px;
+        height: 45px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="site">
+    <header>
+      <div class="brand">
+        <img src="KOPA -logo.jpg" alt="KOPA Logo">
+        <div>
+          <div style="font-size:16px">Kyanamukaaka</div>
+          <div style="font-size:12px; opacity:0.95;">Older People's Association</div>
+        </div>
+      </div>
+
+      <div class="hamburger" id="hamburger">
+        <div></div><div></div><div></div>
+      </div>
+
+      <nav class="nav" id="nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="projects.html">Projects</a>
+        <a href="gallery.html" class="active">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section">
+        <h1>Our Gallery</h1>
+        <h3>Moments that Define Our Community</h3>
+        <p>Explore highlights from our activities, events, and programs that bring joy and support to our senior members.</p>
+
+        <div class="gallery-grid" id="gallery-container">
+          <div class="gallery-item">
+            <img src="commu1.jpeg" alt="outreach">
+            <div class="caption">Celebration of Older Persons’ Day</div>
+          </div>
+          <div class="gallery-item">
+            <img src="images (14).jpeg" alt="Conference">
+            <div class="caption">Social Awareness with the Older Persons</div>
+          </div>
+          <div class="gallery-item">
+            <img src="commu2.jpeg" alt="Community event">
+            <div class="caption">Community Awareness Drive</div>
+          </div>
+          <div class="gallery-item">
+            <img src="images (15).jpeg" alt="Community Gathering">
+            <div class="caption">Celebration Moment</div>
+          </div>
+          <div class="gallery-item">
+            <img src="images (17).jpeg" alt="Training event">
+            <div class="caption">Training & Skills Sharing</div>
+          </div>
+          <div class="gallery-item">
+            <img src="commu3.jpeg" alt="elder day">
+            <div class="caption">Celebration of World Elder Abuse Awareness Day</div>
+          </div>
+        </div>
+
+        <a href="contact.html" class="btn-involved">Get Involved</a>
+        <a href="projects.html" class="prev-btn"><i class="fas fa-arrow-left"></i> Previous</a>
+    
+      </section>
+    </main>
+
+    <footer>
+      &copy; <span id="year"></span> Kyanamukaaka Older People's Association | All rights reserved.
+    </footer>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <img src="" alt="Full view">
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.getElementById('nav');
+    hamburger.addEventListener('click', () => nav.classList.toggle('active'));
+
+    const lightbox = document.getElementById('lightbox');
+    const galleryContainer = document.getElementById('gallery-container');
+
+    galleryContainer.addEventListener('click', e => {
+      if (e.target.tagName === 'IMG') {
+        lightbox.querySelector('img').src = e.target.src;
+        lightbox.classList.add('active');
+      }
+    });
+
+    lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
+  </script>
+</body>
+</html>
